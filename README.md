@@ -4,7 +4,7 @@
 
 🔗 [Link of the exercise in Malware-traffic-analysis](https://www.malware-traffic-analysis.net/2025/01/22/index.html)
 
-*Note : This capture is from a lab environment*
+*Note : This capture is from a lab environment*.
 
 
 ## Introduction
@@ -35,8 +35,8 @@ Based on the caller's initial information, you confirm there was an infection.  
   <img src="https://i.postimg.cc/kgYKbJ2W/wireshark1.png" width="550"/>
 </a>
 
-Next we filter HTTP and TLS to check the visited domains. ( filter used : `http or tls.handshake.type==1 and !(ssdp)` )
-We know that the client downloaded a file after searching for **' google Authenticator '**
+Next we filter HTTP and TLS to check the visited domains. ( filter used : `http or tls.handshake.type==1 and !(ssdp)` ).
+We know that the client downloaded a file after searching for **' google Authenticator '**.
 By scrolling the results, we can see 2 suspicious domains (`google-authenticator.burleson-appliance.net` and `authenticatoor.org` ). We checked them with Virustotal and they look malicious.
 
 ![](https://i.postimg.cc/8cQfdwgS/wireshark3.png)
@@ -53,7 +53,7 @@ We calculated the hash of the first file and we checked it with Virustotal. The 
 
 ![](https://i.postimg.cc/g2FC8Z7P/wireshark5.png)
 
-Following the HTTP stream, the content is a VBScript that allows remote code execution. Here, the script runs Powershell in hidden mode and downloads another script ( `29842.ps1` ) from the server with IP : `5.252.153.241`
+Following the HTTP stream, the content is a VBScript that allows remote code execution. Here, the script runs Powershell in hidden mode and downloads another script ( `29842.ps1` ) from the server with IP : `5.252.153.241`.
 
 ![](https://i.postimg.cc/dtx8xRYz/wireshark6.png)
 
