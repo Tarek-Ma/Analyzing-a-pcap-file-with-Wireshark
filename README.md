@@ -108,7 +108,11 @@ When we follow the HTTP stream (no. 162), the server returned a large Base64 enc
   <img src="https://i.postimg.cc/5tB4ykcc/wireshark16.png" width="700"/>
 </a>
 
-After decoding the Base64 payload and calculated its hash, we found it is malicious. According to Virustotal, the payload contacted 1 IP : `45.125.66.32`. We also see this IP in our pcap : The Conversation view in Wireshark shows > 10,000 packets exchanged with this IP and the victim IP : 
+After decoding the Base64 payload and calculated its hash, we found it is malicious. According to Virustotal, the payload contacted 1 IP : `45.125.66.32`.
+
+![](https://i.postimg.cc/RVfXsqYT/wireshark19.png)
+
+We also see this IP in our pcap : The Conversation view in Wireshark shows > 10,000 packets exchanged with this IP and the victim IP : 
 
 ![](https://i.postimg.cc/76NS3V2d/wireshark17.png)
 
