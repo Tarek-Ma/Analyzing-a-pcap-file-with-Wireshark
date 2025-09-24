@@ -48,3 +48,29 @@ The script retrieves the serial number of the **`C-Disk`**, builds a URL with th
 With this information, we can confirm that the C2 server has for principal IP : 5.252.153.241 ( this IP is also marked as malicious by Virustotal ) and the victim IP is : `10.1.17.215`. We can support this confirmation by looking at the **Conversations** with Wireshark : there are more than 9000 packets exchanged between these 2 IPs
 
 ![](https://i.postimg.cc/XNCPkgyD/wireshark10.png)
+
+Continuing our investigation, we see 1 successful GET with a script inside ( TCP stream no. 61 ). The script contains 5 functions : **Download-Files**, **"Create-Shortcut**, **Invoke-Startup**, **Send-Log**, **ConvertTo-StringData**.
+
+ <a href="https://i.postimg.cc/WzjTvpDQ/wireshark13.png" target="_blank">
+  <img src="https://i.postimg.cc/WzjTvpDQ/wireshark13.png" width="700"/>
+</a>
+
+The script has downloaded successfully 4 files and created a shortcut as we shown in the screenshot :
+`TeamViewer`,
+`TeamViewer_Ressource_fr`,
+`TV`,
+`pas.ps1`.
+
+![](https://i.postimg.cc/3JpZkKck/wireshark11.png)
+
+We obtained the hashes for these files and analyzed them :
+
+`TeamViewer` Not flagged as malicious. It is signed by Teamviewer GmbH, but the signature is revoked. In this context, we can say that TeamViewer is installed to keep **persistence** in the victim's machine.
+
+`TeamViewerèRessource_fr` Not flagged as malicious, same as **TeamViewer**. The signature is also revoked.
+
+`TV` Clearly malicious. This file was executed by Powershell ( **parent process: pas.ps1**).
+
+`pas.ps1` Flagged as malicious.
+
+
