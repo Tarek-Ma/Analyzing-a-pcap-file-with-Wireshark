@@ -1,6 +1,6 @@
 # Analyzing a pcap file with Wireshark from-malware-traffic-analysis
 
-🔗 [Web version in Github Pages](https://tarek-ma.github.io/Investigating-with-ELK-TryHackMe-Room-ItsyBitsy/) ( recommanded to open images )
+🔗 [Web version in Github Pages](https://tarek-ma.github.io/Analyzing-a-pcap-file-with-Wireshark/) ( recommanded to open images )
 
 🔗 [Link of the exercise in Malware-traffic-analysis](https://www.malware-traffic-analysis.net/2025/01/22/index.html)
 
