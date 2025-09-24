@@ -49,7 +49,7 @@ We also see 2 successful GET requests ( **HTTP 200 OK** ) with files : `264872` 
 
 Let's analyze these 2 files. To export HTTP files with Wireshark we go to -> File -> Export objects -> HTTP.
 
-We calculated the hash of the first file and we analyzed it with Virustotal. The result shows this file is malicious.
+We calculated the hash of the first file and we checked it with Virustotal. The result shows this file is malicious.
 
 ![](https://i.postimg.cc/g2FC8Z7P/wireshark5.png)
 
@@ -76,9 +76,9 @@ Continuing our investigation, we found 1 successful GET request with a script in
   <img src="https://i.postimg.cc/WzjTvpDQ/wireshark13.png" width="700"/>
 </a>
 
-The script has downloaded successfully 4 files and created a startup shortcut as we shown in the screenshot :
+The script has downloaded successfully 4 files and created a startup shortcut as shown in the screenshot :
 `TeamViewer`,
-`TeamViewer_Ressource_fr`,
+`TeamViewer_Resource_fr`,
 `TV`,
 `pas.ps1`.
 
@@ -88,7 +88,7 @@ We obtained the hashes for these files and analyzed them :
 
 `TeamViewer` Not flagged as malicious. It is signed by Teamviewer GmbH, but the signature is revoked (according to Virustotal). In this context, we can say that TeamViewer is installed to keep **persistence** in the victim's machine.
 
-`TeamViewer_Ressource_fr` Not flagged as malicious, same as **TeamViewer**. The signature is also revoked (according to Virustotal).
+`TeamViewer_Resource_fr` Not flagged as malicious, same as **TeamViewer**. The signature is also revoked (according to Virustotal).
 
 `TV` Clearly malicious. This file was executed by Powershell ( **parent process: pas.ps1**).
 
@@ -102,7 +102,7 @@ We also found 3 GET request that include a **run / process started** message at 
 
 ![](https://i.postimg.cc/XNxLMVzF/Screenshot-2025-09-24-07-12-23.png)
 
-When we follow the HTTP stream (no.162), the server returned a large Base64 encoded payload, the victim saved and decoded the payload to `C:\ProgramData\jsLeow\skqllz.ps1` . This looks like the second stage payload delivered by the C2.
+When we follow the HTTP stream (no. 162), the server returned a large Base64 encoded payload, the victim saved and decoded the payload to `C:\ProgramData\jsLeow\skqllz.ps1` . This looks like the second stage payload delivered by the C2.
 
  <a href="https://i.postimg.cc/5tB4ykcc/wireshark16.png" target="_blank">
   <img src="https://i.postimg.cc/5tB4ykcc/wireshark16.png" width="700"/>
@@ -139,3 +139,5 @@ After decoding the Base64 payload and calculated its hash, we found it is malici
 | TV | 3448da03808f24568e6181011f8521c0713ea6160efd05bff20c43b091ff59f7 | 44/72 | 2025-09-24 |
 | pas.ps1 | a833f27c2bb4cad31344e70386c44b5c221f031d7cd2f2a6b8601919e790161e | 25/62 | 2025-09-24 |
 | skqllz.ps1 | 0e7f388dd20ca9a1597e9f4fcc1f30af24ad5dc9b6c2b1e89aa3c7d17f76ceed | 16/62 | 2025-09-24 |
+
+Thank you for reading 😃
